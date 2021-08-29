@@ -26,6 +26,20 @@ We say a Turing machine M is
 - It should be noted that we have a rather unusual property for Turing machines, which is that we are only interested in
   their execution on the blank input - we can make some significant reductions on the machines that need to be considered
 
+- we say M has ACTIVITY k if the execution of M on the blank input terminates in k steps
+- we say M has PRODUCTIVITY is the number of non-blank characters on the tape after M has halted
+- productivity for machine that never halts is undefined because activity for such machine is infinite
+
+- we say a Turing machine M SATISFIES THE BLANK TAPE CONDITION iff during the computation of M on the blank input, the only
+  configuration in which the tape is blank is the intial configuration
+
+- we say an n-state Turing machine M where n >= 2 is IRRELEVANT TO THE BUSY BEAVER PROBLEM if at least one of the following
+  conditions is satisfied otherwise it is RELEVANT TO THE BUSY BEAVER PROBLEM
+  - activity(M) = infinity
+  - activity(M) <= n
+  - productivity(M) = 0
+  - M does not satisfy the blank tape condition
+
 */
 
 #define N 2 // states
