@@ -40,6 +40,52 @@ We say a Turing machine M is
   - productivity(M) = 0
   - M does not satisfy the blank tape condition
 
+- chapter 4 shows that searching quintuple machines will find a superset of those found by searching quadruple machines,
+  i.e. searching quintuple machines subsumes searching for quadruple ones
+
+- in order to solve the busy beaver problem, we are only interested in evaluating machines on the blank input, which
+  means we are able to reduce the number of machines that require non trivial analysis
+
+
+- Lemma 15. Let M be a Turing machine containing a tuple of the form (a,0,_,_,a). Then the activity of M is infinite.
+- Lemma 16. Let M be a Turing machine containing a tuple of the form (a,0,_,_,z). Then the activity of M is 1.
+- hence we need only to consider machines whose first transition is of the form (a,0,_,_,b), i.e. State != NewState && NewState != z.
+
+
+- Lemma 17. Let M be a k-halting n-state m-symbol Turing machine containing a tuple of the form (a,0,_,_,S) where S != {a,b,z}.
+            Then there is another k-halting n-state m-symbol Turing machine M' containing the tuple (a,0,_,_b) such that M and M'
+            are productivity and activity equivalent.
+  Proof. Let M' be the machine found by swapping all the occurrences of S and b in M. The result the trivially follows.
+- this means that we can insist that the second state encountered in the machine (after the start state a) is b. Similarly we can
+  insist that the third state (if any) encountered is c, and so on.
+
+
+- Lemma 18. Let M be a Turing machine, and let S1 and S2 be two distinct states in M such that S1, S2 != {a,z}. Let M' be the machine
+  obtained by swapping the states S1 and S2 in every transition in M. Then M' is productivity and activity equivalent to M and M'
+  contains the same number of states, symbols and halting transitions as M.
+- it is similarly straightforward to show a similar result for symbols.
+
+- Lemma 19. Let M be a Turing machine and let O1 and O2 be two distinct symbols in M such that O1, O2 != 0. Let M' be the machine
+  obtained by swapping the symbols O1 and O2 in every transition in M. Then M' is productivity and activity equivalent to M and M'
+  contains the same number of states, symbols and halting transitions as M.
+
+- taken together, Lemmas 18 and 19 mean that we can insist on a specific order in which states and symbols appear in the execution
+  of the machine. In particular, given that the first state must be a, we can insist that the second state encountered be b,
+  the third one c and so forth. Similarly, we can insist that the first non-blank symbol countered be 1, the second 2, and so on.
+  In addition, as we know that the second step executed will always be the b, 0 transition, we can insist that in any transition of
+  the form (b,0,O,D,S) we have O element of {0,1,2}. This means that we can assume that the first transition is of the form
+  (a,0,O,D,b) for some output O and some direction D. Now if O is blank the transition is of the form (a,0,0,D,b), then either the
+  tape remains blank throughout the entire execution of the machine or there is a transition (s,0,O,D,NS) where s != a and O != 0,
+  in which case we simply swap a and s.
+
+- Lemma 20. Let M be a k-halting n-state m-symbol Turing machine of finite activity and productivity >= 1 containing a tuple of the
+            form (a,0,0,_,NS) where NS != z. Then there is another k-halting n-state m-symbol Turing machine M' of finite activity
+            containing the tuple (a,0,O,_,_) where O != 0 such that M' is productivity equivalent of M.
+
+  Proof. As productivity(M) >= 1, there must be a transition of the form (S,0,O,_,_) where S != a and O != 0 in M, and that this
+         is the first transition in the execution of M which writes a non-blank symbol on the tape. Let M' be the machine found
+         by swapping all occurrences of a and S in M. The result then trivially follows.
+
 */
 
 #define N 2 // states
