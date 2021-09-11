@@ -86,6 +86,38 @@ We say a Turing machine M is
          is the first transition in the execution of M which writes a non-blank symbol on the tape. Let M' be the machine found
          by swapping all occurrences of a and S in M. The result then trivially follows.
 
+- Lemma 22. Let M be a Turing machine containing tuples of th eform (a,0,_,r,b) and (b,0,_,r_,S) where S is element of {a,b}.
+            Then M has infinite activity.
+
+- Definition 23. An n-state Turing machine is 0-dextrous if there are n transitions of the form (_,0_,_,_) and all n such transitions
+                 are of the form (_,0,_,r,_).
+                 The reason that we identify the 0-dextrous class of machines is that they are all irrelevant.
+
+- Lemma 24. Let M be a 0-dextrous Turing machine. Then M is irrelevant to the busy beaver problem.
+
+  Proof. Let the number of states in M be n. If M does not terminate on the blank input, then its activity is infinite and M is hence
+         irrelevant. Otherwise, M terminates on the blank input, which, as M is 0-dextrous, is only possible if there is a transition
+         in M of the form (_,0,_,r,z). This means that M halts in at most n steps, and so activity(M) <= n, which means
+         that M is irrelevant.
+
+  As this property requires that at least all of the transitions for input 0 are known, this can generally only be implemented
+  as a constraint on the final machine, i.e. that any 0-dextrous machine that is generated is ignored. 
+
+
+-  Definition 25. A Turing machine M is normal iff it has all of the following properties:
+
+     - M contains the tuple (a,0,1,r,b)
+
+     - M contains either a tuple of the form (b,0,O,l,S) where S in {a,b,c} and O in {0,1,2}, or a tuple of the form (b,0,O,r,c) where
+       O in {0,1,2}.
+
+     - M is not 0-dextrous
+
+     - When executing M on the blank input,
+       - states are encountered in alphabetical order
+       - symbols are encountered in numerical order
+       - the blank tape condition is satisfied
+
 */
 
 #define N 2 // states
