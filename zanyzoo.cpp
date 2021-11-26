@@ -4,6 +4,7 @@
 
 TRANSITION FORM - (State, Input, Output, Direction, NewState)
 
+
 We say a Turing machine M is
 1. K-HALTING if there are k transitions of the form (_,_,_,_,z) in M.
 2. EXHAUSTIVE if transition function is TOTAL function -
@@ -33,6 +34,17 @@ NOTES:
 - there are the same number of 5-states 2-symbols machines as there are with 2-states 5-symbols, this is why we will speak of generating
   machines of a given dimension rather than given number of states.
 
+
+Let M be a Turing machine we say
+1. M has ACTIVITY k if the execution of M on the blank input terminates in k steps.
+2. the PRODUCTIVITY of M whose ACTIVITY is finite is the number of non-blank characters on the tape after M has halted.
+3. M SATISFIES THE BLANK TAPE CONDITION iff during the computation of M on the blank input, the only configuration in which the
+   tape is blank is the initial configuration.
+4. an n-state M where n >= 2 is IRRELEVANT TO THE BUSY BEAVER PROBLEM if at least one of the following conditions is satisfied:
+     a) activity(M) is INFINITE (M does not terminate on the blank input)
+     b) activity(M) <= n (it is simple to construct n-state machines of activity n and productivity n)
+     c) productivity(M) = 0 (M does not write any non-blank characters on the blank input)
+     d) M DOES NOT SATISFY the blank tape condition (M may write non-blank characters but it "cancels them" by writing blank over them).
 */
 
 #define N 2 // states
