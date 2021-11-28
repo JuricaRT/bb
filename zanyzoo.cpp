@@ -230,6 +230,31 @@ Proof. Let M be a Turing machine which is relevant to the busy beaver problem.
   at all, thus reducing the work we need to do, and other which once generated can be immediately dismissed as irrelevant, thus reducing
   the number of machines to be stored.
 
+
+
+Monotonicity and Machine Generation
+-----------------------------------
+
+- when generating machines for the busy beaver problem, it seems intuitively natural to concentrate on machines that are 1-halting,
+  exhaustive and maximising, we can ensure that machine is maximising by specifying that any halting transition
+  be of the form (_,_,1,r,z), however, we cannot guarantee that a generated machine is 1-halting or exhaustive.
+
+- we can generally only guarantee that the generation of an n-state m-symbol machine will result in a machine that is n-STATE FULL and
+  m-SYMBOL FULL rather than one which is n-m-exhaustive.
+
+- the reason that we can always ensure that the generation of an n-state m-symbol machine result in a machine which is n-state full and
+  m-symbol full is the STRICT MONOTONICITY OF THE BUSY BEAVER FUNCTION, i.e. bb(n1,m) > bb(n2,m) whenever n1 > n2 >= 2.
+
+- specifically, knowing that bb(5,2) > bb(4,2) means that when generating an n-state m-symbol machine, we do not allow the halting
+  transition to be added until we have all n states and m symbols present in the machine.
+
+- the transition (a,0,1,r,b), which occurs in all machines, guarantees the occurence of at least 2 states and at least 2 symbols.
+
+- it is intuitively obvious that the busy beaver function is monotonic in both the number of states and the number of symbols, i.e.
+  bb(n1,m) >= bb(n2,m) whenever n1 > n2 >= 2 and that bb(n,m1) >= bb(n,m2) whenever m1 > m2 >= 2.
+
+- it is not difficult to show that the bb function is strictly monotonic in the number of states.
+
 */
 
 #define N 2 // states
