@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <vector>
 
-#define N 4 // states
+#define N 2 // states
 #define M 4 // symbols
 
 #define UNDEFINED_OUTPUT -1
@@ -149,14 +149,15 @@ void generate() {
   machine.add_transition(S(START_STATE), BLANK_SYMBOL, 1, D(RIGHT), S(SECOND_STATE));
   
   // step 2
-  for (int symbol : machine.symbol_choice()) {
+  std::vector<int> symbols = machine.symbol_choice();
+  for (int symbol : symbols) {
      for (char state : {START_STATE, SECOND_STATE}) {
        machine.add_transition(S(SECOND_STATE), BLANK_SYMBOL, symbol, D(LEFT), state);
      }
   }
-
+  
   if (N >= 3) {
-    for (int symbol : machine.symbol_choice()) {
+    for (int symbol : symbols) {
       for (char direction : {LEFT, RIGHT}) {
         machine.add_transition(S(SECOND_STATE), BLANK_SYMBOL, symbol, direction, S(THIRD_STATE));
       }
