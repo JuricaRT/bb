@@ -4,14 +4,14 @@
 
 #define DEBUG
 
-#define N 2 // states
+#define N 3 // states
 #define M 2 // symbols
 
 #define NUMBER_OF_EXECUTION_STEPS 200
 
 #define UNDEFINED_OUTPUT -1
 #define UNDEFINED_STATE -2
-#define UNDEFINED_DIRECTION -3
+#define UNDEFINED_DIRECTION 0
 
 #define RIGHT_V 1
 #define LEFT_V -1
@@ -296,10 +296,10 @@ void generate() {
           for (int symbol : symbols) {
             for (char dir : {LEFT, RIGHT}) {
               // we do not want to alter original machine
-              Machine machine_copy = machine;
-              machine_copy.add_transition(machine.current_state, machine.tape[machine.current_position], symbol, D(dir), state);
-              if (!machine_copy.is_0_dextrous())
-                generated_machines.push_back(machine_copy);
+              Machine m_copy = machine;
+              m_copy.add_transition(m_copy.current_state, m_copy.tape[m_copy.current_position], symbol, D(dir), state);
+              if (!m_copy.is_0_dextrous())
+                machines_to_consider.push(m_copy);
             }
           }
         }
