@@ -207,7 +207,7 @@ Definition 25. A Turing machine is NORMAL iff it has all of the following proper
    - symbols are encountered in numberical order
    - the blank tape condition is satisfied
 
-Proposition 26. Let M be a n-state Turing machine. If M is releveant to the busy beaver problem, then M is productivity
+Proposition 26. Let M be a n-state Turing machine. If M is relevant to the busy beaver problem, then M is productivity
                 equivalent to a normal machine.
 Proof. Let M be a Turing machine which is relevant to the busy beaver problem.
        
